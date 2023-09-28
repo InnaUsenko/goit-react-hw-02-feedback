@@ -9,8 +9,13 @@ class App extends Component {
     bad: 0,
   };
 
-  countTotalFeedback = () => {};
-  countPositiveFeedbackPercentage = () => {};
+  countTotalFeedback = () => {
+    return this.state.bad + this.state.neutral + this.state.good;
+  };
+  countPositiveFeedbackPercentage = () => {
+    let divide = this.countTotalFeedback() <= 0 ? 1 : this.countTotalFeedback();
+    return Math.round((this.state.good * 100) / divide);
+  };
 
   vote = event => {
     const id = event.target.id;
@@ -29,11 +34,15 @@ class App extends Component {
     }
   };
   render() {
+    let total = this.countTotalFeedback();
+    let countPositive = this.countPositiveFeedbackPercentage();
     return (
       <Feedback
         good={this.state.good}
         neutral={this.state.neutral}
         bad={this.state.bad}
+        total={total}
+        countPositive={countPositive}
         vote={this.vote}
       />
     );
