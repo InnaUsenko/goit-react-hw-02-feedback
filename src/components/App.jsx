@@ -1,5 +1,8 @@
 import React from 'react';
-import Feedback from './Feedback/Feedback';
+import Section from './Section/Section';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Statistic from './Statistics/Statistic';
+
 const { Component } = require('react');
 
 class App extends Component {
@@ -18,7 +21,7 @@ class App extends Component {
   };
 
   vote = event => {
-    const id = event.target.id;
+    const id = event.currentTarget.id;
     switch (id) {
       case 'good':
         this.setState({ good: this.state.good + 1 });
@@ -37,14 +40,16 @@ class App extends Component {
     let total = this.countTotalFeedback();
     let countPositive = this.countPositiveFeedbackPercentage();
     return (
-      <Feedback
-        good={this.state.good}
-        neutral={this.state.neutral}
-        bad={this.state.bad}
-        total={total}
-        countPositive={countPositive}
-        vote={this.vote}
-      />
+      <Section title={'Please leave feedback'}>
+        <FeedbackOptions option={Object.keys(this.state)} vote={this.vote} />
+        <Statistic
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={total}
+          countPositive={countPositive}
+        />
+      </Section>
     );
   }
 }
