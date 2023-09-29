@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from './FeedbackOptions.module.css';
 
 class FeedbackOptions extends Component {
   render() {
@@ -6,8 +7,13 @@ class FeedbackOptions extends Component {
       <div>
         {this.props.option.map(elem => {
           return (
-            <button key={elem} id={elem} onClick={this.props.vote}>
-              <span>{elem}</span>
+            <button
+              className={css.btn}
+              key={elem}
+              id={elem}
+              onClick={this.props.vote}
+            >
+              <span className={css.buttonText}>{elem}</span>
             </button>
           );
         })}

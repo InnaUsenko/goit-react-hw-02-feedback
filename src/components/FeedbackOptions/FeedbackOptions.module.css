@@ -1,0 +1,10 @@
+.btn {
+  margin-right: 8px;
+  width: 80px;
+}
+.buttonText {
+  display: inline-block;
+}
+.buttonText::first-letter {
+  text-transform: capitalize;
+}

@@ -41,20 +41,22 @@ class App extends Component {
     let total = this.countTotalFeedback();
     let countPositive = this.countPositiveFeedbackPercentage();
     return (
-      <Section title={'Please leave feedback'}>
-        <FeedbackOptions option={Object.keys(this.state)} vote={this.vote} />
-        {total > 0 ? (
-          <Statistic
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={total}
-            countPositive={countPositive}
-          />
-        ) : (
-          <Notification message="There is no feedback" />
-        )}
-      </Section>
+      <div style={{ padding: '16px' }}>
+        <Section title={'Please leave feedback'}>
+          <FeedbackOptions option={Object.keys(this.state)} vote={this.vote} />
+          {total > 0 ? (
+            <Statistic
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={total}
+              countPositive={countPositive}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
+      </div>
     );
   }
 }
